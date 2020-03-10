@@ -7,6 +7,7 @@ d = False #check per decimali
 n = -1 #posizione decimale
 neg = False #check negativo
 
+#classi
 class calc:
     def __init__(self,x,y):
         self.sum = x + y
@@ -16,6 +17,16 @@ class calc:
             self.div = math.nan
         else:
             self.div = round(x/y,2)
+class trig:
+    def __init__(self,x):
+        if not i:
+            self.cos = round(math.cos(x),2)
+            self.sin = round(math.sin(x),2)
+            self.tan = round(math.tan(x),2)
+        if i:
+            self.cos = round(math.acos(x),2)
+            self.sin = round(math.asin(x),2)
+            self.tan = round(math.atan(x),2)
 
 #uguale
 def uguale():
@@ -62,34 +73,25 @@ def inv():
             print(i)
 
 def sin():
-    global a,i,l
-    if i == False:
-        a = round(math.sin(a),3)
-    else:
-        if i == True:
-            a = round(math.asin(a),3)
+    global a,l
+    t = trig(a)
+    a = t.sin
     print(a)
     l.configure(text=a)
 def cos():
-    global a,i,l
-    if i == False:
-        a = round(math.cos(a),3)
-    else:
-        if i == True:
-            a = round(math.acos(a),3)
+    global a,l
+    t = trig(a)
+    a = t.cos
     print(a)
     l.configure(text=a)
 def tan():
-    global a,i,l
-    if i == 0:
-        a = round(math.tan(a),3)
-    else:
-        if i == 1:
-            a = round(math.atan(a),3)
-    print(a) 
+    global a,l
+    t = trig(a)
+    a = t.tan
+    print(a)
     l.configure(text=a)
 
-#operazioni
+#operazioni lineari
 def add():
     global a, b, operazione, d
     d = False
