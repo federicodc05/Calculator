@@ -30,7 +30,7 @@ class trig:
 
 #uguale
 def uguale():
-    global a, b, operazione,risultato,l
+    global a, b, operazione,risultato,l,sign
     risultato = a
     res = calc(b,a)
     if operazione == 1:
@@ -44,6 +44,7 @@ def uguale():
     l.configure(text=risultato)
     a = risultato
     b = 0
+    sign.configure(text="=")
 
 #root
 def sqrt():
@@ -93,12 +94,13 @@ def tan():
 
 #operazioni lineari
 def add():
-    global a, b, operazione, d
+    global a, b, operazione, d,sign
     d = False
     operazione = 1
     b = a
     a = 0
     print("+")
+    sign.configure(text="+")
 def sub():
     global a, b, operazione, d
     d = False
@@ -106,6 +108,7 @@ def sub():
     b = a
     a = 0
     print("-")
+    sign.configure(text="-")
 def mul():
     global a, b, operazione, d
     d = False
@@ -113,6 +116,7 @@ def mul():
     b = a
     a = 0
     print("x")
+    sign.configure(text="x")
 def div():
     global a, b, operazione, d
     d = False
@@ -120,12 +124,14 @@ def div():
     b = a
     a = 0
     print(":")
+    sign.configure(text=":")
 
 #← e C
 def delete():
     global a
     a = math.floor(a/10)
     print(a)
+    l.configure(text=a)
 def delall():
     global a,b,operazione,d,neg,n
     a = 0
@@ -193,41 +199,43 @@ main_screen = Tk()
 main_screen.resizable(0,0)
 
 l = Label(text="0")
+sign = Label()
 
 #i pulsanti
-b0 = Button(text="0",command=c0)
-b1 = Button(text="1",command=c1)
-b2 = Button(text="2",command=c2)
-b3 = Button(text="3",command=c3)
-b4 = Button(text="4",command=c4)
-b5 = Button(text="5",command=c5)
-b6 = Button(text="6",command=c6)
-b7 = Button(text="7",command=c7)
-b8 = Button(text="8",command=c8)
-b9 = Button(text="9",command=c9)
-bπ = Button(text="+/-",command=cπ)
-bp = Button(text="+",command=add)
-bm = Button(text="-",command=sub)
-bx = Button(text="x",command=mul)
-bd = Button(text=":",command=div)
-bu = Button(text="=",command=uguale)
-bc = Button(text="←",command=delete)
-bcanc = Button(text="C",command=delall)
-bsin = Button(text="sin",command=sin)
-bcos = Button(text="cos",command=cos)
-btan = Button(text="tan",command=tan)
-bvirg = Button(text=".",command=dec)
-bsqrt = Button(text="sqrt",command=sqrt)
-binv = Button(text="inv",command=inv)
+b0 = Button(text="0",command=c0,width=2)
+b1 = Button(text="1",command=c1,width=2)
+b2 = Button(text="2",command=c2,width=2)
+b3 = Button(text="3",command=c3,width=2)
+b4 = Button(text="4",command=c4,width=2)
+b5 = Button(text="5",command=c5,width=2)
+b6 = Button(text="6",command=c6,width=2)
+b7 = Button(text="7",command=c7,width=2)
+b8 = Button(text="8",command=c8,width=2)
+b9 = Button(text="9",command=c9,width=2)
+bπ = Button(text="+/-",command=cπ,width=2)
+bp = Button(text="+",command=add,width=2)
+bm = Button(text="-",command=sub,width=2)
+bx = Button(text="x",command=mul,width=2)
+bd = Button(text=":",command=div,width=2)
+bu = Button(text="=",command=uguale,width=2)
+bc = Button(text="←",command=delete,width=2)
+bcanc = Button(text="C",command=delall,width=3)
+bsin = Button(text="sin",command=sin,width=3)
+bcos = Button(text="cos",command=cos,width=3)
+btan = Button(text="tan",command=tan,width=3)
+bvirg = Button(text=".",command=dec,width=2)
+bsqrt = Button(text="sqrt",command=sqrt,width=2)
+binv = Button(text="inv",command=inv,width=2)
 
 '''
 posizionamento dei pulsanti:
 7 8 9 : tan inv       row1
 4 5 6 x cos π         row2
 1 2 3 - sin sqrt      row3
-← 0 + =  C  .         row4
+. 0 + =  C  ←         row4
 '''
 l.grid(row=0,column=0,columnspan=5)
+sign.grid(row=0,column=5)
 b7.grid(row=1,column=0)
 b8.grid(row=1,column=1)
 b9.grid(row=1,column=2)
@@ -237,7 +245,7 @@ b6.grid(row=2,column=2)
 b1.grid(row=3,column=0)
 b2.grid(row=3,column=1)
 b3.grid(row=3,column=2)
-bc.grid(row=4,column=0)
+bc.grid(row=4,column=5)
 b0.grid(row=4,column=1)
 bp.grid(row=4,column=2)
 bm.grid(row=3,column=3)
@@ -249,7 +257,7 @@ bcos.grid(row=2,column=4)
 bsin.grid(row=3,column=4)
 bcanc.grid(row=4,column=4)
 bπ.grid(row=2,column=5)
-bvirg.grid(row=4,column=5)
+bvirg.grid(row=4,column=0)
 bsqrt.grid(row=3,column=5)
 binv.grid(row=1,column=5)
 
