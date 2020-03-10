@@ -80,7 +80,7 @@ def cos():
     print(a)
     l.configure(text=a)
 def tan():
-    global a,l
+    global a,i,l
     if i == 0:
         a = round(math.tan(a),3)
     else:
@@ -223,7 +223,7 @@ posizionamento dei pulsanti:
 7 8 9 : tan inv       row1
 4 5 6 x cos π         row2
 1 2 3 - sin sqrt      row3
-← 0 + =  C  . (WIP)   row4
+← 0 + =  C  .         row4
 '''
 l.grid(row=0,column=0,columnspan=5)
 b7.grid(row=1,column=0)
