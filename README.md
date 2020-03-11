@@ -6,7 +6,7 @@ Report any issue you find (Salvo sto guardando a te)
 
 <h2>Work in Progress/Planned:</h2>
 *Hyperbolic Functions <br>
-*Powers Done! <br>
+*Powers (Done) <br>
 *n-th root <br>
 *Base-10 Log <br>
 *Base-e Log <br>
