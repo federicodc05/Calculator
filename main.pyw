@@ -3,7 +3,6 @@ import math
 a = 0 #valore a schermo (la maggior parte del tempo)
 b = 0 #valore in memoria per operazioni aritmetiche
 i = False #check per funzioni trigonometriche (da normale a inversa e viceversa)
-h = False #check per funzioni iperboliche
 d = False #check per decimali
 n = -1 #posizione decimale
 neg = False #check negativo
@@ -27,22 +26,15 @@ class calc:
     n = -3
 class trig:
     def __init__(self,x):
-        if not i and not h:
+        if not i:
             self.cos = round(math.cos(x),2)
             self.sin = round(math.sin(x),2)
             self.tan = round(math.tan(x),2)
-        if i and not h:
+        if i:
             self.cos = round(math.acos(x),2)
             self.sin = round(math.asin(x),2)
             self.tan = round(math.atan(x),2)
-        if not i and h:
-            self.cos = round(math.cosh(x),2)
-            self.sin = round(math.sinh(x),2)
-            self.tan = round(math.tanh(x),2)
-        if i and h:
-            self.cos = round(math.acosh(x),2)
-            self.sin = round(math.asinh(x),2)
-            self.tan = round(math.atanh(x),2)
+
     n = -3
 class log:
     def __init__(self,x):
@@ -143,48 +135,17 @@ def inv():
     global i,bsin,bcos,btan
     if not i:
         i = True
-        if not h:
-            bsin.configure(text="asin")
-            bcos.configure(text="acos")
-            btan.configure(text="atan")
-        if h:
-            bsin.configure(text="asinh")
-            bcos.configure(text="acosh")
-            btan.configure(text="atanh")
+        bsin.configure(text="asin")
+        bcos.configure(text="acos")
+        btan.configure(text="atan")
+
     else:
         if i:
             i = False
-            if not h:
-                bsin.configure(text="sin")
-                bcos.configure(text="cos")
-                btan.configure(text="tan")
-            if h:
-                bsin.configure(text="sinh")
-                bcos.configure(text="cosh")
-                btan.configure(text="tanh")
-def hyp():
-    global i,h,bsin,bcos,btan
-    if not h:
-        h = True
-        if not i:
-            bsin.configure(text="sinh")
-            bcos.configure(text="cosh")
-            btan.configure(text="tanh")
-        if i:
-            bsin.configure(text="asinh")
-            bcos.configure(text="acosh")
-            btan.configure(text="atanh")
-    else:
-        if h:
-            h = False
-            if i:
-                bsin.configure(text="asin")
-                bcos.configure(text="acos")
-                btan.configure(text="atan")
-            if not i:
-                bsin.configure(text="sin")
-                bcos.configure(text="cos")
-                btan.configure(text="tan")
+            bsin.configure(text="sin")
+            bcos.configure(text="cos")
+            btan.configure(text="tan")
+            
 
 def sin():
     global a,l
@@ -349,20 +310,19 @@ bd = Button(text=":",command=div,width=2)
 bpow = Button(text="^",command=pow,width=2)
 bu = Button(text="=",command=uguale,width=2)
 bc = Button(text="←",command=delete,width=2)
-bcanc = Button(text="C",command=delall,width=4)
-bsin = Button(text="sin",command=sin,width=4)
-bcos = Button(text="cos",command=cos,width=4)
-btan = Button(text="tan",command=tan,width=4)
+bcanc = Button(text="C",command=delall,width=3)
+bsin = Button(text="sin",command=sin,width=3)
+bcos = Button(text="cos",command=cos,width=3)
+btan = Button(text="tan",command=tan,width=3)
 bvirg = Button(text=".",command=dec,width=2)
 bsqrt = Button(text="sqrt",command=sqrt,width=2)
 binv = Button(text="inv",command=inv,width=2)
-dhyp = Button(text="hyp",command=hyp,width=2)
 blog = Button(text="log",command=logb10,width=2)
 bnlog = Button(text="In",command=natlog,width=2)
 bexp = Button(text="exp",command=exp,width=2)
 dm = Button(text="D",width=2,command=dark)
 
-buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,bpow,blog,bnlog,bexp,dhyp,dm]
+buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,bpow,blog,bnlog,bexp,dm]
 labels = [l,sign]
 
 '''
@@ -373,8 +333,8 @@ posizionamento dei pulsanti:
 1 2 3 - sin sqrt log (10)      row3
 . 0 + =  C  ←    log (e)       row4
 '''
-l.grid(row=0,column=1,columnspan=4)
-sign.grid(row=0,column=5)
+l.grid(row=0,column=1,columnspan=5)
+sign.grid(row=0,column=6)
 b7.grid(row=1,column=0)
 b8.grid(row=1,column=1)
 b9.grid(row=1,column=2)
@@ -403,7 +363,6 @@ bpow.grid(row=1,column=6)
 blog.grid(row=3,column=6)
 bnlog.grid(row=4,column=6)
 bexp.grid(row=2,column=6)
-dhyp.grid(row=0,column=6)
 dm.grid(row=0,column=0)
 
 main_screen.mainloop()
