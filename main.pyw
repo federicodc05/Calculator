@@ -97,6 +97,14 @@ def uguale():
     b = 0
     sign.configure(text="=")
 
+#exponential
+def exp():
+    global a,l,n
+    a = round(math.e**a,3)
+    n = -4
+    print(a)
+    l.configure(text=a)
+
 #log
 def logb10():
     global a,l
@@ -310,7 +318,7 @@ bsqrt = Button(text="sqrt",command=sqrt,width=2)
 binv = Button(text="inv",command=inv,width=2)
 blog = Button(text="log",command=logb10,width=2)
 bnlog = Button(text="In",command=natlog,width=2)
-bexp = Button(text="exp",width=2)
+bexp = Button(text="exp",command=exp,width=2)
 dm = Button(text="D",width=2,command=dark)
 
 buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,bpow,blog,bnlog,bexp,dm]
