@@ -5,13 +5,14 @@ Anyway, this is just an Alpha version, so it might be lacking of features.
 Report any issue you find (Salvo sto guardando a te)
 
 <h2>Work in Progress/Planned:</h2>
-*Hyperbolic Functions (Done) <br>
-*Powers (Done) <br>
+*Hyperbolic Functions <br>
 *n-th root <br>
-*Base-10 Log (Done)<br>
-*Base-e Log (Done)<br>
-*Exponential function (Done)<br>
 *Binary Support (Maybe)
+
+<h2>Update Alpha 1.3 </h2>
+*Added powers
+*Added base-10 and base-e logs
+*Added exponential function
 
 <h2>Update Alpha 1.2: </h2>
 *Added Dark Mode! <br>
