@@ -8,13 +8,17 @@ n = -1 #posizione decimale
 neg = False #check negativo
 darkmode = False #check darkmode
 operazione = 0 #valore operazione lineare
-
+ 
 #classi
 class calc:
     def __init__(self,x,y):
         self.sum = x + y
         self.diff = x - y
         self.prod = round(x*y,2)
+        if x == 0 and y == 0:
+            self.power = math.nan
+        else:
+            self.power = x**y
         if y == 0:
             self.div = math.nan
         else:
@@ -22,7 +26,6 @@ class calc:
     n = -3
 class trig:
     def __init__(self,x):
-        global n
         if not i:
             self.cos = round(math.cos(x),2)
             self.sin = round(math.sin(x),2)
@@ -31,7 +34,23 @@ class trig:
             self.cos = round(math.acos(x),2)
             self.sin = round(math.asin(x),2)
             self.tan = round(math.atan(x),2)
-        n = -3
+
+    n = -3
+class log:
+    def __init__(self,x):
+        global n
+        if x > 0:
+            self.log = round(math.log10(x),2)
+            self.In = round(math.log(x),2)
+            n = -3
+        if x == 0:
+            self.log = -math.inf
+            self.In = -math.inf
+            n = -1
+        if x < 0:
+            self.log = math.nan
+            self.In = math.nan
+            n = -1
 
 #darkmode switch
 def bdarkswitch(b):
@@ -58,7 +77,6 @@ def dark():
         main_screen.configure(bg="grey14")
     else:
         main_screen.configure(bg="white")
-        
 
 #uguale
 def uguale():
@@ -73,12 +91,36 @@ def uguale():
         risultato = res.prod
     if operazione == 4:
         risultato = res.div
+    if operazione == 5:
+        risultato = res.power
     l.configure(text=risultato)
     a = risultato
     b = 0
     sign.configure(text="=")
 
-#root
+#exponential
+def exp():
+    global a,l,n
+    a = round(math.e**a,3)
+    n = -4
+    print(a)
+    l.configure(text=a)
+
+#log
+def logb10():
+    global a,l
+    res = log(a)
+    a = res.log
+    print(a)
+    l.configure(text=a)
+def natlog():
+    global a,l
+    res = log(a)
+    a = res.In
+    print(a)
+    l.configure(text=a)
+
+#square root
 def sqrt():
     global a,l
     if a >= 0:
@@ -91,19 +133,19 @@ def sqrt():
 #funzioni trigonometriche
 def inv():
     global i,bsin,bcos,btan
-    if i == False:
+    if not i:
         i = True
         bsin.configure(text="asin")
         bcos.configure(text="acos")
         btan.configure(text="atan")
-        print(i)
+
     else:
-        if i == True:
+        if i:
             i = False
             bsin.configure(text="sin")
             bcos.configure(text="cos")
             btan.configure(text="tan")
-            print(i)
+            
 
 def sin():
     global a,l
@@ -157,6 +199,14 @@ def div():
     a = 0
     print(":")
     sign.configure(text=":")
+def pow():
+    global a, b, operazione, d
+    d = False
+    operazione = 5
+    b = a
+    a = 0
+    print("^")
+    sign.configure(text="^")
 
 #← e C
 def delete():
@@ -257,6 +307,7 @@ bp = Button(text="+",command=add,width=2)
 bm = Button(text="-",command=sub,width=2)
 bx = Button(text="x",command=mul,width=2)
 bd = Button(text=":",command=div,width=2)
+bpow = Button(text="^",command=pow,width=2)
 bu = Button(text="=",command=uguale,width=2)
 bc = Button(text="←",command=delete,width=2)
 bcanc = Button(text="C",command=delall,width=3)
@@ -266,20 +317,24 @@ btan = Button(text="tan",command=tan,width=3)
 bvirg = Button(text=".",command=dec,width=2)
 bsqrt = Button(text="sqrt",command=sqrt,width=2)
 binv = Button(text="inv",command=inv,width=2)
+blog = Button(text="log",command=logb10,width=2)
+bnlog = Button(text="In",command=natlog,width=2)
+bexp = Button(text="exp",command=exp,width=2)
 dm = Button(text="D",width=2,command=dark)
 
-buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,dm]
+buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,bpow,blog,bnlog,bexp,dm]
 labels = [l,sign]
 
 '''
 posizionamento dei pulsanti:
-7 8 9 : tan inv       row1
-4 5 6 x cos +/-       row2
-1 2 3 - sin sqrt      row3
-. 0 + =  C  ←         row4
+                 hyp
+7 8 9 : tan inv   ^            row1
+4 5 6 x cos +/-   e            row2
+1 2 3 - sin sqrt log (10)      row3
+. 0 + =  C  ←    log (e)       row4
 '''
-l.grid(row=0,column=1,columnspan=4)
-sign.grid(row=0,column=5)
+l.grid(row=0,column=1,columnspan=5)
+sign.grid(row=0,column=6)
 b7.grid(row=1,column=0)
 b8.grid(row=1,column=1)
 b9.grid(row=1,column=2)
@@ -304,6 +359,10 @@ bπ.grid(row=2,column=5)
 bvirg.grid(row=4,column=0)
 bsqrt.grid(row=3,column=5)
 binv.grid(row=1,column=5)
+bpow.grid(row=1,column=6)
+blog.grid(row=3,column=6)
+bnlog.grid(row=4,column=6)
+bexp.grid(row=2,column=6)
 dm.grid(row=0,column=0)
 
 main_screen.mainloop()
