@@ -15,6 +15,10 @@ class calc:
         self.sum = x + y
         self.diff = x - y
         self.prod = round(x*y,2)
+        if x == 0 and y == 0:
+            self.power = math.nan
+        else:
+            self.power = x**y
         if y == 0:
             self.div = math.nan
         else:
@@ -73,6 +77,8 @@ def uguale():
         risultato = res.prod
     if operazione == 4:
         risultato = res.div
+    if operazione == 5:
+        risultato = res.power
     l.configure(text=risultato)
     a = risultato
     b = 0
@@ -157,6 +163,14 @@ def div():
     a = 0
     print(":")
     sign.configure(text=":")
+def pow():
+    global a, b, operazione, d
+    d = False
+    operazione = 5
+    b = a
+    a = 0
+    print("^")
+    sign.configure(text="^")
 
 #← e C
 def delete():
@@ -257,6 +271,7 @@ bp = Button(text="+",command=add,width=2)
 bm = Button(text="-",command=sub,width=2)
 bx = Button(text="x",command=mul,width=2)
 bd = Button(text=":",command=div,width=2)
+bpow = Button(text="^",command=pow,width=2)
 bu = Button(text="=",command=uguale,width=2)
 bc = Button(text="←",command=delete,width=2)
 bcanc = Button(text="C",command=delall,width=3)
@@ -268,18 +283,18 @@ bsqrt = Button(text="sqrt",command=sqrt,width=2)
 binv = Button(text="inv",command=inv,width=2)
 dm = Button(text="D",width=2,command=dark)
 
-buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,dm]
+buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,bpow,dm]
 labels = [l,sign]
 
 '''
 posizionamento dei pulsanti:
-7 8 9 : tan inv       row1
-4 5 6 x cos +/-       row2
-1 2 3 - sin sqrt      row3
-. 0 + =  C  ←         row4
+7 8 9 : tan inv   ^            row1
+4 5 6 x cos +/-   e            row2
+1 2 3 - sin sqrt log           row3
+. 0 + =  C  ←    hyp           row4
 '''
-l.grid(row=0,column=1,columnspan=4)
-sign.grid(row=0,column=5)
+l.grid(row=0,column=1,columnspan=5)
+sign.grid(row=0,column=6)
 b7.grid(row=1,column=0)
 b8.grid(row=1,column=1)
 b9.grid(row=1,column=2)
@@ -304,6 +319,7 @@ bπ.grid(row=2,column=5)
 bvirg.grid(row=4,column=0)
 bsqrt.grid(row=3,column=5)
 binv.grid(row=1,column=5)
+bpow.grid(row=1,column=6)
 dm.grid(row=0,column=0)
 
 main_screen.mainloop()
