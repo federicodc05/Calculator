@@ -6,6 +6,8 @@ i = False #check per funzioni trigonometriche (da normale a inversa e viceversa)
 d = False #check per decimali
 n = -1 #posizione decimale
 neg = False #check negativo
+darkmode = False #check darkmode
+operazione = 0 #valore operazione lineare
 
 #classi
 class calc:
@@ -17,8 +19,10 @@ class calc:
             self.div = math.nan
         else:
             self.div = round(x/y,2)
+    n = -3
 class trig:
     def __init__(self,x):
+        global n
         if not i:
             self.cos = round(math.cos(x),2)
             self.sin = round(math.sin(x),2)
@@ -27,6 +31,34 @@ class trig:
             self.cos = round(math.acos(x),2)
             self.sin = round(math.asin(x),2)
             self.tan = round(math.atan(x),2)
+        n = -3
+
+#darkmode switch
+def bdarkswitch(b):
+    global darkmode
+    if darkmode:
+        b.configure(bg="grey19",fg="white")
+    else:
+        b.configure(bg="SystemButtonFace",fg="black")
+def ldarkswitch(l):
+    if darkmode:
+        l.configure(bg="grey14",fg="white")
+    else:
+        l.configure(bg="white",fg="black")
+def dark():
+    global darkmode
+    global buttons, labels, main_screen
+    darkmode = not darkmode
+    print(darkmode)
+    for var in buttons:
+        bdarkswitch(var)
+    for lab in labels:
+        ldarkswitch(lab)
+    if darkmode:
+        main_screen.configure(bg="grey14")
+    else:
+        main_screen.configure(bg="white")
+        
 
 #uguale
 def uguale():
@@ -128,8 +160,16 @@ def div():
 
 #← e C
 def delete():
-    global a
-    a = math.floor(a/10)
+    global a,d,n
+    if d:
+        print(-n)
+        n += 1
+        print(-n)
+        if n == 0:
+            d = False
+        a = round(a,-n)
+    else:
+        a = math.floor(a/10)
     print(a)
     l.configure(text=a)
 def delall():
@@ -226,15 +266,19 @@ btan = Button(text="tan",command=tan,width=3)
 bvirg = Button(text=".",command=dec,width=2)
 bsqrt = Button(text="sqrt",command=sqrt,width=2)
 binv = Button(text="inv",command=inv,width=2)
+dm = Button(text="D",width=2,command=dark)
+
+buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,dm]
+labels = [l,sign]
 
 '''
 posizionamento dei pulsanti:
 7 8 9 : tan inv       row1
-4 5 6 x cos π         row2
+4 5 6 x cos +/-       row2
 1 2 3 - sin sqrt      row3
 . 0 + =  C  ←         row4
 '''
-l.grid(row=0,column=0,columnspan=5)
+l.grid(row=0,column=1,columnspan=4)
 sign.grid(row=0,column=5)
 b7.grid(row=1,column=0)
 b8.grid(row=1,column=1)
@@ -260,5 +304,6 @@ bπ.grid(row=2,column=5)
 bvirg.grid(row=4,column=0)
 bsqrt.grid(row=3,column=5)
 binv.grid(row=1,column=5)
+dm.grid(row=0,column=0)
 
 main_screen.mainloop()
