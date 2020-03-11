@@ -1,5 +1,6 @@
 from tkinter import *
 import math
+import binary
 a = 0 #valore a schermo (la maggior parte del tempo)
 b = 0 #valore in memoria per operazioni aritmetiche
 i = False #check per funzioni trigonometriche (da normale a inversa e viceversa)
@@ -239,6 +240,10 @@ def dec():
     a = int(a)
     l.configure(text=str(a)+".")
 
+def binn():
+    global main_screen
+    binary.binscreen(main_screen)
+
 #cifre    
 def eval(x):
     global a,l,d,n,neg
@@ -320,21 +325,22 @@ binv = Button(text="inv",command=inv,width=2)
 blog = Button(text="log",command=logb10,width=2)
 bnlog = Button(text="In",command=natlog,width=2)
 bexp = Button(text="exp",command=exp,width=2)
+dbin = Button(text="bin",command=binn,width=2)
 dm = Button(text="D",width=2,command=dark)
 
-buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,bpow,blog,bnlog,bexp,dm]
+buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,bpow,blog,bnlog,bexp,dbin,dm]
 labels = [l,sign]
 
 '''
 posizionamento dei pulsanti:
-                 hyp
+                 bin
 7 8 9 : tan inv   ^            row1
 4 5 6 x cos +/-   e            row2
 1 2 3 - sin sqrt log (10)      row3
 . 0 + =  C  ←    log (e)       row4
 '''
-l.grid(row=0,column=1,columnspan=5)
-sign.grid(row=0,column=6)
+l.grid(row=0,column=1,columnspan=4)
+sign.grid(row=0,column=5)
 b7.grid(row=1,column=0)
 b8.grid(row=1,column=1)
 b9.grid(row=1,column=2)
@@ -363,6 +369,7 @@ bpow.grid(row=1,column=6)
 blog.grid(row=3,column=6)
 bnlog.grid(row=4,column=6)
 bexp.grid(row=2,column=6)
+dbin.grid(row=0,column=6)
 dm.grid(row=0,column=0)
 
 main_screen.mainloop()
