@@ -6,7 +6,8 @@ Report any issue you find (Salvo sto guardando a te) <br>
 
 <h2>Update Alpha 1.2: </h2>
 *Added Dark Mode! <br>
-*Improved Trigonometric Functions
+*Improved Trigonometric Functions <br>
+*Bug Fixes
 
 <h2>Update Alpha 1.1: </h2>
  *Fixed button sizes <br>
