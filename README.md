@@ -9,7 +9,7 @@ Report any issue you find (Salvo sto guardando a te)
 *n-th root <br>
 *Binary Support (Maybe)
 
-<h2>Update Alpha 1.3 </h2>
+<h2>Update Alpha 1.3: </h2>
 *Added powers
 *Added base-10 and base-e logs
 *Added exponential function
