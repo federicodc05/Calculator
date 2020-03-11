@@ -10,9 +10,9 @@ Report any issue you find (Salvo sto guardando a te)
 *Binary Support (Maybe)
 
 <h2>Update Alpha 1.3: </h2>
-*Added powers
-*Added base-10 and base-e logs
-*Added exponential function
+*Added powers <br>
+*Added base-10 and base-e logs <br>
+*Added exponential function <br>
 
 <h2>Update Alpha 1.2: </h2>
 *Added Dark Mode! <br>
