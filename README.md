@@ -8,9 +8,9 @@ Report any issue you find (Salvo sto guardando a te)
 *Hyperbolic Functions <br>
 *Powers (Done) <br>
 *n-th root <br>
-*Base-10 Log <br>
-*Base-e Log <br>
-*Exponential function <br>
+*Base-10 Log (Done)<br>
+*Base-e Log (Done)<br>
+*Exponential function (Done)<br>
 *Binary Support (Maybe)
 
 <h2>Update Alpha 1.2: </h2>
