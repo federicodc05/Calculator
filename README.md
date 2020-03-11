@@ -4,10 +4,18 @@ This is a working calculator for Python. This is also my first work that uses cl
 Anyway, this is just an Alpha version, so it might be lacking of features.
 Report any issue you find (Salvo sto guardando a te)
 
+<h1>Beta has arrived! </h1>
+This Update is dedicated to Binary numbers! They're still a little buggy, but usable 
+
 <h2>Work in Progress/Planned:</h2>
-*Hyperbolic Functions <br>
-*n-th root <br>
-*Binary Support (Maybe)
+*Hyperbolic Functions (Unlikely to be added due to appoximation and restricted domain) <br>
+*n-th root (Soon!) <br>
+*Base-10 button for binary mode
+
+<h2> Update Beta 1.0 </h2>
+*Added Binary numbers <br>
+*Added bitwiese AND, OR, XOR, NOT operators <br>
+*Added "bin" button to switch to binary mode, but there is no going back! once you enter binary mode, you have to restart to get back to base 10 (button is a placeholder)
 
 <h2>Update Alpha 1.3 </h2>
 *Added powers
