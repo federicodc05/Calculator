@@ -5,7 +5,7 @@ Anyway, this is just an Alpha version, so it might be lacking of features.
 Report any issue you find (Salvo sto guardando a te)
 
 <h2>Work in Progress/Planned:</h2>
-*Hyperbolic Functions <br>
+*Hyperbolic Functions (Done) <br>
 *Powers (Done) <br>
 *n-th root <br>
 *Base-10 Log (Done)<br>
