@@ -8,7 +8,7 @@ n = -1 #posizione decimale
 neg = False #check negativo
 darkmode = False #check darkmode
 operazione = 0 #valore operazione lineare
-
+ 
 #classi
 class calc:
     def __init__(self,x,y):
@@ -26,7 +26,6 @@ class calc:
     n = -3
 class trig:
     def __init__(self,x):
-        global n
         if not i:
             self.cos = round(math.cos(x),2)
             self.sin = round(math.sin(x),2)
@@ -35,7 +34,22 @@ class trig:
             self.cos = round(math.acos(x),2)
             self.sin = round(math.asin(x),2)
             self.tan = round(math.atan(x),2)
-        n = -3
+    n = -3
+class log:
+    def __init__(self,x):
+        global n
+        if x > 0:
+            self.log = round(math.log10(x),2)
+            self.In = round(math.log(x),2)
+            n = -3
+        if x == 0:
+            self.log = -math.inf
+            self.In = -math.inf
+            n = -1
+        if x < 0:
+            self.log = math.nan
+            self.In = math.nan
+            n = -1
 
 #darkmode switch
 def bdarkswitch(b):
@@ -62,7 +76,6 @@ def dark():
         main_screen.configure(bg="grey14")
     else:
         main_screen.configure(bg="white")
-        
 
 #uguale
 def uguale():
@@ -84,7 +97,21 @@ def uguale():
     b = 0
     sign.configure(text="=")
 
-#root
+#log
+def logb10():
+    global a,l
+    res = log(a)
+    a = res.log
+    print(a)
+    l.configure(text=a)
+def natlog():
+    global a,l
+    res = log(a)
+    a = res.In
+    print(a)
+    l.configure(text=a)
+
+#square root
 def sqrt():
     global a,l
     if a >= 0:
@@ -281,17 +308,20 @@ btan = Button(text="tan",command=tan,width=3)
 bvirg = Button(text=".",command=dec,width=2)
 bsqrt = Button(text="sqrt",command=sqrt,width=2)
 binv = Button(text="inv",command=inv,width=2)
+blog = Button(text="log",command=logb10,width=2)
+bnlog = Button(text="In",command=natlog,width=2)
+bexp = Button(text="exp",width=2)
 dm = Button(text="D",width=2,command=dark)
 
-buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,bpow,dm]
+buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,bpow,blog,bnlog,bexp,dm]
 labels = [l,sign]
 
 '''
 posizionamento dei pulsanti:
 7 8 9 : tan inv   ^            row1
 4 5 6 x cos +/-   e            row2
-1 2 3 - sin sqrt log           row3
-. 0 + =  C  ←    hyp           row4
+1 2 3 - sin sqrt log (10)      row3
+. 0 + =  C  ←    log (e)       row4
 '''
 l.grid(row=0,column=1,columnspan=5)
 sign.grid(row=0,column=6)
@@ -320,6 +350,9 @@ bvirg.grid(row=4,column=0)
 bsqrt.grid(row=3,column=5)
 binv.grid(row=1,column=5)
 bpow.grid(row=1,column=6)
+blog.grid(row=3,column=6)
+bnlog.grid(row=4,column=6)
+bexp.grid(row=2,column=6)
 dm.grid(row=0,column=0)
 
 main_screen.mainloop()
