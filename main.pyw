@@ -1,6 +1,5 @@
 from tkinter import *
 import math
-import binary
 a = 0 #valore a schermo (la maggior parte del tempo)
 b = 0 #valore in memoria per operazioni aritmetiche
 i = False #check per funzioni trigonometriche (da normale a inversa e viceversa)
@@ -52,6 +51,10 @@ class log:
             self.log = math.nan
             self.In = math.nan
             n = -1
+
+def recallbinscreen():
+    import binary
+    binary.binscreen()
 
 #darkmode switch
 def bdarkswitch(b):
@@ -242,8 +245,10 @@ def dec():
 
 def binn():
     global main_screen
-    binary.binscreen(main_screen)
+    main_screen.destroy()
+    recallbinscreen()
 
+ 
 #cifre    
 def eval(x):
     global a,l,d,n,neg
@@ -290,86 +295,92 @@ def cπ():
     neg = not neg
     print(neg)
 
-main_screen = Tk()
-main_screen.resizable(0,0)
+def main_screen():
+    global main_screen
+    global l, sign, buttons, labels, bsin, bcos, btan
 
-l = Label(text="0")
-sign = Label()
+    main_screen = Tk()
+    main_screen.resizable(0,0)
 
-#i pulsanti
-b0 = Button(text="0",command=c0,width=2)
-b1 = Button(text="1",command=c1,width=2)
-b2 = Button(text="2",command=c2,width=2)
-b3 = Button(text="3",command=c3,width=2)
-b4 = Button(text="4",command=c4,width=2)
-b5 = Button(text="5",command=c5,width=2)
-b6 = Button(text="6",command=c6,width=2)
-b7 = Button(text="7",command=c7,width=2)
-b8 = Button(text="8",command=c8,width=2)
-b9 = Button(text="9",command=c9,width=2)
-bπ = Button(text="+/-",command=cπ,width=2)
-bp = Button(text="+",command=add,width=2)
-bm = Button(text="-",command=sub,width=2)
-bx = Button(text="x",command=mul,width=2)
-bd = Button(text=":",command=div,width=2)
-bpow = Button(text="^",command=pow,width=2)
-bu = Button(text="=",command=uguale,width=2)
-bc = Button(text="←",command=delete,width=2)
-bcanc = Button(text="C",command=delall,width=3)
-bsin = Button(text="sin",command=sin,width=3)
-bcos = Button(text="cos",command=cos,width=3)
-btan = Button(text="tan",command=tan,width=3)
-bvirg = Button(text=".",command=dec,width=2)
-bsqrt = Button(text="sqrt",command=sqrt,width=2)
-binv = Button(text="inv",command=inv,width=2)
-blog = Button(text="log",command=logb10,width=2)
-bnlog = Button(text="In",command=natlog,width=2)
-bexp = Button(text="exp",command=exp,width=2)
-dbin = Button(text="bin",command=binn,width=2)
-dm = Button(text="D",width=2,command=dark)
+    l = Label(text="0")
+    sign = Label()
 
-buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,bpow,blog,bnlog,bexp,dbin,dm]
-labels = [l,sign]
+    #i pulsanti
+    b0 = Button(text="0",command=c0,width=2)
+    b1 = Button(text="1",command=c1,width=2)
+    b2 = Button(text="2",command=c2,width=2)
+    b3 = Button(text="3",command=c3,width=2)
+    b4 = Button(text="4",command=c4,width=2)
+    b5 = Button(text="5",command=c5,width=2)
+    b6 = Button(text="6",command=c6,width=2)
+    b7 = Button(text="7",command=c7,width=2)
+    b8 = Button(text="8",command=c8,width=2)
+    b9 = Button(text="9",command=c9,width=2)
+    bπ = Button(text="+/-",command=cπ,width=2)
+    bp = Button(text="+",command=add,width=2)
+    bm = Button(text="-",command=sub,width=2)
+    bx = Button(text="x",command=mul,width=2)
+    bd = Button(text=":",command=div,width=2)
+    bpow = Button(text="^",command=pow,width=2)
+    bu = Button(text="=",command=uguale,width=2)
+    bc = Button(text="←",command=delete,width=2)
+    bcanc = Button(text="C",command=delall,width=3)
+    bsin = Button(text="sin",command=sin,width=3)
+    bcos = Button(text="cos",command=cos,width=3)
+    btan = Button(text="tan",command=tan,width=3)
+    bvirg = Button(text=".",command=dec,width=2)
+    bsqrt = Button(text="sqrt",command=sqrt,width=2)
+    binv = Button(text="inv",command=inv,width=2)
+    blog = Button(text="log",command=logb10,width=2)
+    bnlog = Button(text="In",command=natlog,width=2)
+    bexp = Button(text="exp",command=exp,width=2)
+    dbin = Button(text="bin",command=binn,width=2)
+    dm = Button(text="D",width=2,command=dark)
 
-'''
-posizionamento dei pulsanti:
-                 bin
-7 8 9 : tan inv   ^            row1
-4 5 6 x cos +/-   e            row2
-1 2 3 - sin sqrt log (10)      row3
-. 0 + =  C  ←    log (e)       row4
-'''
-l.grid(row=0,column=1,columnspan=4)
-sign.grid(row=0,column=5)
-b7.grid(row=1,column=0)
-b8.grid(row=1,column=1)
-b9.grid(row=1,column=2)
-b4.grid(row=2,column=0)
-b5.grid(row=2,column=1)
-b6.grid(row=2,column=2)
-b1.grid(row=3,column=0)
-b2.grid(row=3,column=1)
-b3.grid(row=3,column=2)
-bc.grid(row=4,column=5)
-b0.grid(row=4,column=1)
-bp.grid(row=4,column=2)
-bm.grid(row=3,column=3)
-bx.grid(row=2,column=3)
-bd.grid(row=1,column=3)
-bu.grid(row=4,column=3)
-btan.grid(row=1,column=4)
-bcos.grid(row=2,column=4)
-bsin.grid(row=3,column=4)
-bcanc.grid(row=4,column=4)
-bπ.grid(row=2,column=5)
-bvirg.grid(row=4,column=0)
-bsqrt.grid(row=3,column=5)
-binv.grid(row=1,column=5)
-bpow.grid(row=1,column=6)
-blog.grid(row=3,column=6)
-bnlog.grid(row=4,column=6)
-bexp.grid(row=2,column=6)
-dbin.grid(row=0,column=6)
-dm.grid(row=0,column=0)
+    buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bπ,bp,bm,bx,bd,bu,bc,bcanc,bsin,bcos,btan,bvirg,bsqrt,binv,bpow,blog,bnlog,bexp,dbin,dm]
+    labels = [l,sign]
 
-main_screen.mainloop()
+    '''
+    posizionamento dei pulsanti:
+                    bin
+    7 8 9 : tan inv   ^            row1
+    4 5 6 x cos +/-   e            row2
+    1 2 3 - sin sqrt log (10)      row3
+    . 0 + =  C  ←    log (e)       row4
+    '''
+    l.grid(row=0,column=1,columnspan=4)
+    sign.grid(row=0,column=5)
+    b7.grid(row=1,column=0)
+    b8.grid(row=1,column=1)
+    b9.grid(row=1,column=2)
+    b4.grid(row=2,column=0)
+    b5.grid(row=2,column=1)
+    b6.grid(row=2,column=2)
+    b1.grid(row=3,column=0)
+    b2.grid(row=3,column=1)
+    b3.grid(row=3,column=2)
+    bc.grid(row=4,column=5)
+    b0.grid(row=4,column=1)
+    bp.grid(row=4,column=2)
+    bm.grid(row=3,column=3)
+    bx.grid(row=2,column=3)
+    bd.grid(row=1,column=3)
+    bu.grid(row=4,column=3)
+    btan.grid(row=1,column=4)
+    bcos.grid(row=2,column=4)
+    bsin.grid(row=3,column=4)
+    bcanc.grid(row=4,column=4)
+    bπ.grid(row=2,column=5)
+    bvirg.grid(row=4,column=0)
+    bsqrt.grid(row=3,column=5)
+    binv.grid(row=1,column=5)
+    bpow.grid(row=1,column=6)
+    blog.grid(row=3,column=6)
+    bnlog.grid(row=4,column=6)
+    bexp.grid(row=2,column=6)
+    dbin.grid(row=0,column=6)
+    dm.grid(row=0,column=0)
+
+    main_screen.mainloop()
+
+main_screen()
