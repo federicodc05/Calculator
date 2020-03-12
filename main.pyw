@@ -53,7 +53,7 @@ class log:
             n = -1
 
 def recallbinscreen():
-    import binary
+    from __dependencies__ import binary
     binary.binscreen()
 
 #darkmode switch
