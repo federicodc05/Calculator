@@ -1,5 +1,17 @@
 from tkinter import *
 
+a = '0b'
+b = '0b'
+
+def recallmainscreen():
+    import main
+    main.main_screen()
+
+def base10():
+    global binscreen
+    binscreen.destroy()
+    recallmainscreen()
+    
 
 class calc:
     def __init__(self,x,y):
@@ -64,19 +76,14 @@ def eval1():
     l.configure(text=a)
 
 
-def binscreen(screen):
+def binscreen():
     global binscreen, a, b, operazione, l
     binscreen = Tk()
     binscreen.resizable(0,0)
-    screen.destroy()
     a = '0b'
     b = '0b'
     operazione = 0
-    '''
-    def base10():
-        global screen
-        screen = Tk()
-    '''
+    
 
     l = Label(binscreen)
     bin0 = Button(binscreen,text="0",width=3,command=eval0)
@@ -87,7 +94,7 @@ def binscreen(screen):
     binu = Button(binscreen,text="=",width=3,command=uguale)
     binnot = Button(binscreen,text="NOT",width=3,command=NOT)
     binback = Button(binscreen,text="←",width=3,command=back)
-    bin10 = Button(binscreen,text="base 10",height=2)
+    bin10 = Button(binscreen,text="base 10",height=2,command=base10)
 
     '''
         posizione pulsanti:
@@ -104,6 +111,6 @@ def binscreen(screen):
     binnot.grid(row=2,column=1)
     binu.grid(row=2,column=2)
     binback.grid(row=2,column=3)
-    bin10.grid(row=1,column=4,rowspan=2)
+    bin10.grid(row=1,column=4,rowspan=2,)
 
     binscreen.mainloop()
