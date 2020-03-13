@@ -8,8 +8,8 @@ def base10():
 
     for widget in binbuttons:
         widget.grid_remove()
-    #for widget in b10b:
-    #    widget.grid()
+    for widget in b10b:
+        widget.grid()
 
 class calc:
     def __init__(self,x,y):
@@ -84,9 +84,8 @@ def binscreen(base10buttons):
     b10b = []
 
 
-    for i in range(len(base10buttons)): #non funziona quando provo a trasferire da una lista all'altra
-        print(i) # se togli queste righe
-        b10b.append(base10buttons.pop(i)) #tutto funziona alla perfezione, o quasi
+    for i in range(len(base10buttons)):
+        b10b.append(base10buttons[i]) 
     
 
     l = Label()
@@ -98,7 +97,7 @@ def binscreen(base10buttons):
     binu = Button(text="=",width=3,command=uguale)
     binnot = Button(text="NOT",width=3,command=NOT)
     binback = Button(text="←",width=3,command=back)
-    bin10 = Button(text="base 10",height=2)
+    bin10 = Button(text="base 10",height=2,command=base10)
 
     binbuttons = [l,bin0,bin1,binand,binor,binxor,binu,binnot,binback,bin10]
 
