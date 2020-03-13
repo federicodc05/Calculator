@@ -3,15 +3,13 @@ from tkinter import *
 a = '0b'
 b = '0b'
 
-def recallmainscreen():
-    import main
-    main.main_screen()
-
 def base10():
-    global binscreen
-    binscreen.destroy()
-    recallmainscreen()
-    
+    global binbuttons, b10b
+
+    for widget in binbuttons:
+        widget.grid_remove()
+    #for widget in b10b:
+    #    widget.grid()
 
 class calc:
     def __init__(self,x,y):
@@ -76,25 +74,33 @@ def eval1():
     l.configure(text=a)
 
 
-def binscreen():
-    global binscreen, a, b, operazione, l
-    binscreen = Tk()
-    binscreen.resizable(0,0)
+def binscreen(base10buttons):
+    global binscreen, a, b, operazione, l, binbuttons, b10b
+
     a = '0b'
     b = '0b'
     operazione = 0
+
+    b10b = []
+
+
+    for i in range(len(base10buttons)): #non funziona quando provo a trasferire da una lista all'altra
+        print(i) # se togli queste righe
+        b10b.append(base10buttons.pop(i)) #tutto funziona alla perfezione, o quasi
     
 
-    l = Label(binscreen)
-    bin0 = Button(binscreen,text="0",width=3,command=eval0)
-    bin1 = Button(binscreen,text="1",width=3,command=eval1)
-    binand = Button(binscreen,text="AND",width=3,command=AND)
-    binor = Button(binscreen,text="OR",width=3,command=OR)
-    binxor = Button(binscreen,text="XOR",width=3,command=XOR)
-    binu = Button(binscreen,text="=",width=3,command=uguale)
-    binnot = Button(binscreen,text="NOT",width=3,command=NOT)
-    binback = Button(binscreen,text="←",width=3,command=back)
-    bin10 = Button(binscreen,text="base 10",height=2,command=base10)
+    l = Label()
+    bin0 = Button(text="0",width=3,command=eval0)
+    bin1 = Button(text="1",width=3,command=eval1)
+    binand = Button(text="AND",width=3,command=AND)
+    binor = Button(text="OR",width=3,command=OR)
+    binxor = Button(text="XOR",width=3,command=XOR)
+    binu = Button(text="=",width=3,command=uguale)
+    binnot = Button(text="NOT",width=3,command=NOT)
+    binback = Button(text="←",width=3,command=back)
+    bin10 = Button(text="base 10",height=2)
+
+    binbuttons = [l,bin0,bin1,binand,binor,binxor,binu,binnot,binback,bin10]
 
     '''
         posizione pulsanti:
@@ -112,5 +118,3 @@ def binscreen():
     binu.grid(row=2,column=2)
     binback.grid(row=2,column=3)
     bin10.grid(row=1,column=4,rowspan=2,)
-
-    binscreen.mainloop()
