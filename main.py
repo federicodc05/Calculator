@@ -75,6 +75,8 @@ def binn():
         item.grid_remove()
     l.grid_remove()
     sign.grid_remove()
+    buttons.append(l)
+    buttons.append(sign)
     binary.binscreen(buttons)
     
 
