@@ -1,76 +1,21 @@
-from tkinter import *
 import math
+from tkinter import *
+from __dependencies__ import classes as cl
+from __dependencies__ import __func__ as f
 
-a = 0  # valore a schermo (la maggior parte del tempo)
-b = 0  # valore in memoria per operazioni aritmetiche
+operazione = 0  # check operazioni
+a = 0  # valore a schermo
+b = 0  # memoria aritmetica
 i = False  # check per funzioni trigonometriche (da normale a inversa e viceversa)
 d = False  # check per decimali
 n = -1  # posizione decimale
 neg = False  # check negativo
 darkmode = False  # check darkmode
-operazione = 0  # valore operazione lineare
-
-
-# classi
-class calc:
-    def __init__(self, x, y):
-        self.sum = x + y
-        self.diff = x - y
-        self.prod = round(x * y, 2)
-        if x == 0 and y == 0:
-            self.power = math.nan
-        else:
-            self.power = x ** y
-        if x == 0 and y == 0:
-            self.div = math.nan
-        if x != 0 and y ==0:
-            self.div = math.inf
-        if x != 0 and y != 0:  
-            self.div = round(x / y, 2)
-
-    n = -3
-
-
-class trig:
-    def __init__(self, x):
-        if not i:
-            self.cos = round(math.cos(x), 2)
-            self.sin = round(math.sin(x), 2)
-            self.tan = round(math.tan(x), 2)
-        if i:
-            self.cos = round(math.acos(x), 2)
-            self.sin = round(math.asin(x), 2)
-            self.tan = round(math.atan(x), 2)
-
-    n = -3
-
-
-class log:
-    def __init__(self, x):
-        global n
-        if x > 0:
-            self.log = round(math.log10(x), 2)
-            self.In = round(math.log(x), 2)
-            n = -3
-        if x == 0:
-            self.log = -math.inf
-            self.In = -math.inf
-            n = -1
-        if x < 0:
-            self.log = math.nan
-            self.In = math.nan
-            n = -1
-
-
-class mod:
-    def __init__(self, x, y):
-        self.div = x // y
-        self.mod = x % y
 
 
 def binn():
     from __dependencies__ import binary
-    global buttons
+    global buttons, darkmode, main_screen
     for item in buttons:
         item.grid_remove()
     l.grid_remove()
@@ -81,41 +26,45 @@ def binn():
     
 
 # darkmode switch
-def bdarkswitch(b):
+def bdarkswitch(booby):
     global darkmode
     if darkmode:
-        b.configure(bg="grey19", fg="white")
+        booby.configure(bg="grey19", fg="white")
     else:
-        b.configure(bg="SystemButtonFace", fg="black")
+        booby.configure(bg="SystemButtonFace", fg="black")
 
 
-def ldarkswitch(l):
+def ldarkswitch(looly):
     if darkmode:
-        l.configure(bg="grey14", fg="white")
+        looly.configure(bg="grey14", fg="white")
     else:
-        l.configure(bg="white", fg="black")
+        looly.configure(bg="SystemButtonFace", fg="black")
 
 
 def dark():
     global darkmode
     global buttons, labels, main_screen
+    from __dependencies__ import binary
     darkmode = not darkmode
     print(darkmode)
     for var in buttons:
         bdarkswitch(var)
+    for var in binary.binbuttons:
+        bdarkswitch(var)
+    ldarkswitch(binary.bl)
     for lab in labels:
         ldarkswitch(lab)
     if darkmode:
         main_screen.configure(bg="grey14")
     else:
-        main_screen.configure(bg="white")
+        main_screen.configure(bg="SystemButtonFace")
 
 
 # uguale
 def uguale():
-    global a, b, operazione, risultato, l, sign
+    global a, b, operazione, risultato, l, sign, d, n
     risultato = a
-    res = calc(b, a)
+    res = cl.calc(b, a)
     if operazione == 1:
         risultato = res.sum
     if operazione == 2:
@@ -126,11 +75,16 @@ def uguale():
         risultato = res.div
     if operazione == 5:
         risultato = res.power
+    if operazione == 7:
+        risultato = res.rt
+    if risultato != int(risultato):
+        n = -3
+        d = True
     l.configure(text=risultato)
     sign.configure(text="=")
     if operazione == 6:
         if a == int(a) and b == int(b):
-            res = mod(b, a)
+            res = cl.mod(b, a)
             risultato = res.div
             modulus = res.mod
             l.configure(text="Q=" + str(risultato) + ", R=" + str(modulus))
@@ -141,39 +95,31 @@ def uguale():
 
 # exponential
 def exp():
-    global a, l, n
-    a = round(math.e ** a, 3)
-    n = -4
+    global a, l, n, d
+    a = f.exp(a, l, n)
     print(a)
-    l.configure(text=a)
+    d = True
+    print(d)
 
 
 # log
 def logb10():
     global a, l
-    res = log(a)
-    a = res.log
+    a = f.log10(a, l, n)
     print(a)
-    l.configure(text=a)
 
 
 def natlog():
-    global a, l
-    res = log(a)
-    a = res.In
+    global a, l, n
+    a = f.nat_log(a, l, n)
     print(a)
-    l.configure(text=a)
 
 
 # square root
 def sqrt():
-    global a, l
-    if a >= 0:
-        a = round(math.sqrt(a), 3)
-    else:
-        a = math.nan
+    global a, l, n
+    a = f.root(a, l, n)
     print(a)
-    l.configure(text=a)
 
 
 # funzioni trigonometriche
@@ -195,7 +141,7 @@ def inv():
 
 def sin():
     global a, l
-    t = trig(a)
+    t = cl.trig(a,i)
     a = t.sin
     print(a)
     l.configure(text=a)
@@ -203,7 +149,7 @@ def sin():
 
 def cos():
     global a, l
-    t = trig(a)
+    t = cl.trig(a,i)
     a = t.cos
     print(a)
     l.configure(text=a)
@@ -211,13 +157,13 @@ def cos():
 
 def tan():
     global a, l
-    t = trig(a)
+    t = cl.trig(a,i)
     a = t.tan
     print(a)
     l.configure(text=a)
 
 
-# operazioni lineari
+#operazioni artitmetiche
 def add():
     global a, b, operazione, d, sign
     d = False
@@ -226,8 +172,6 @@ def add():
     a = 0
     print("+")
     sign.configure(text="+")
-
-
 def sub():
     global a, b, operazione, d
     d = False
@@ -236,8 +180,6 @@ def sub():
     a = 0
     print("-")
     sign.configure(text="-")
-
-
 def mul():
     global a, b, operazione, d
     d = False
@@ -246,8 +188,6 @@ def mul():
     a = 0
     print("x")
     sign.configure(text="x")
-
-
 def div():
     global a, b, operazione, d
     d = False
@@ -256,8 +196,6 @@ def div():
     a = 0
     print(":")
     sign.configure(text=":")
-
-
 def modulo():
     global a, b, operazione, d
     d = False
@@ -266,8 +204,6 @@ def modulo():
     a = 0
     print("mod")
     sign.configure(text="|-")
-
-
 def pow():
     global a, b, operazione, d
     d = False
@@ -276,6 +212,14 @@ def pow():
     a = 0
     print("^")
     sign.configure(text="^")
+def rt():
+    global a,b, operazione, d
+    d = False
+    operazione = 7
+    b = a
+    a = 0
+    print("rt")
+    sign.configure(text="√")
 
 
 # ← e C
@@ -312,6 +256,24 @@ def dec():
     a = int(a)
     l.configure(text=str(a) + ".")
 
+
+def gamma():
+    global a, l, n
+    a = f.gamma(a, l, n)
+    print(a)
+
+
+def l_gamma():
+    global a, l, n
+    a = cl.func(a).l_gamma
+    n = -3
+    l.configure(text=a)
+
+
+def erf():
+    global a, l, n
+    a = f.gamma(a, l, n)
+    print(a)
 
 
 # cifre
@@ -389,6 +351,7 @@ def main_screen():
 
     main_screen = Tk()
     main_screen.resizable(0, 0)
+    main_screen.title("Calculator")
 
     l = Label(text="0")
     sign = Label()
@@ -422,25 +385,28 @@ def main_screen():
     blog = Button(text="log", command=logb10, width=2)
     bnlog = Button(text="In", command=natlog, width=2)
     bexp = Button(text="exp", command=exp, width=2)
-    dbin = Button(text="bin", command=binn, width=2)
+    dbin = Button(text="bin", command=binn, width=3)
     bmod = Button(text="mod", command=modulo, width=3)
-    br = Button(text="n-√", width=3)
+    br = Button(text="n-√", command=rt, width=3)
+    bgamma = Button(text="Γ", command=gamma, width=3)
+    # blgamma = Button(text="Ln(Γ)", command=l_gamma, width=3)
+    berf = Button(text="erf", command= erf, width=3)
     dm = Button(text="D", width=2, command=dark)
 
     buttons = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bπ, bp, bm, bx, bd, bu, bc, bcanc, bsin, bcos, btan, bvirg,
-               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, dm]
+               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, bgamma, berf, dm]
     labels = [l, sign]
 
     '''
     posizionamento dei pulsanti:
-                    bin
-    7 8 9 : tan inv   ^                  row1
-    4 5 6 x cos +/-   e                  row2
+                    bin        erf
+    7 8 9 : tan inv   ^        l_gamma   row1
+    4 5 6 x cos +/-   e        gamma     row2
     1 2 3 - sin sqrt log (10)  root      row3
     . 0 + =  C  ←    log (e)   mod       row4
     '''
-    l.grid(row=0, column=1, columnspan=4)
-    sign.grid(row=0, column=5)
+    l.grid(row=0, column=1, columnspan=5)
+    sign.grid(row=0, column=6 )
     b7.grid(row=1, column=0)
     b8.grid(row=1, column=1)
     b9.grid(row=1, column=2)
@@ -469,9 +435,12 @@ def main_screen():
     blog.grid(row=3, column=6)
     bnlog.grid(row=4, column=6)
     bexp.grid(row=2, column=6)
-    dbin.grid(row=0, column=6)
+    dbin.grid(row=0, column=7)
     bmod.grid(row=4, column=7)
     br.grid(row=3, column=7)
+    bgamma.grid(row=2, column=7)
+    # blgamma.grid(row=1,column=7)
+    berf.grid(row=1,column=7)
     dm.grid(row=0, column=0)
 
     main_screen.mainloop()
