@@ -117,4 +117,4 @@ def binscreen(base10buttons):
     binnot.grid(row=2,column=1)
     binu.grid(row=2,column=2)
     binback.grid(row=2,column=3)
-    bin10.grid(row=1,column=4,rowspan=2,)
+    bin10.grid(row=1,column=4,rowspan=2)
