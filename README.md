@@ -9,8 +9,12 @@ This Update is dedicated to Binary numbers! They're still a little buggy, but us
 
 <h2>Work in Progress/Planned:</h2>
 *Hyperbolic Functions (Unlikely to be added due to appoximation and restricted domain) <br>
-*n-th root (Soon!) <br>
-*Base-10 button for binary mode
+
+<h2> Update Beta 1.1 </h2>
+*Fixed switching between base-10 and base-2 <br>
+*Added error function, gamma function and n-th root <br>
+*Added Dark Mode on binary <br>
+*Improved file managing
 
 <h2> Update Beta 1.0 </h2>
 *Added Binary numbers <br>
