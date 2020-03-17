@@ -10,6 +10,9 @@ This Update is dedicated to Binary numbers! They're still a little buggy, but us
 <h2>Work in Progress/Planned:</h2>
 *Hyperbolic Functions (Unlikely to be added due to appoximation and restricted domain) <br>
 
+<h2> Update Beta 1.2.1 </h2>
+*Added Quadratic Equation Calculator. (ax^2 + bx + c = 0)
+
 <h2> Update Beta 1.2 </h2>
 *Added graphing capabilities for the following functions: <br>
 <tt>cos(x)</tt><br>
