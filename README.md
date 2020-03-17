@@ -10,6 +10,17 @@ This Update is dedicated to Binary numbers! They're still a little buggy, but us
 <h2>Work in Progress/Planned:</h2>
 *Hyperbolic Functions (Unlikely to be added due to appoximation and restricted domain) <br>
 
+<h2> Update Beta 1.2 </h2>
+*Added graphing capabilities for the following functions: <br>
+<tt>cos(x)</tt><br>
+<tt>sin(x)</tt><br>
+<tt>tan(x)</tt><br>
+<tt>cos(x)</tt><br>
+<tt>e^x</tt><br>
+<tt>x^k</tt><br>
+<tt>sqrt(x)</tt><br>
+<tt>plolynomials & more</tt><br>
+
 <h2> Update Beta 1.1 </h2>
 *Fixed switching between base-10 and base-2 <br>
 *Added error function, gamma function and n-th root <br>
