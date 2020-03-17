@@ -3,6 +3,7 @@ from tkinter import *
 from __dependencies__ import classes as cl
 from __dependencies__ import __func__ as f
 from __dependencies__ import graph as g
+from __dependencies__ import quadratic as q
 
 
 operazione = 0  # check operazioni
@@ -34,6 +35,10 @@ def bdarkswitch(booby):
         booby.configure(bg="grey19", fg="white")
     else:
         booby.configure(bg="SystemButtonFace", fg="black")
+
+
+def quadratic():
+    q.quadratic_screen(darkmode)
 
 
 def ldarkswitch(looly):
@@ -388,11 +393,12 @@ def main_screen():
     bgamma = Button(text="Γ", command=gamma, width=3)
     # blgamma = Button(text="Ln(Γ)", command=l_gamma, width=3)
     berf = Button(text="erf", command= erf, width=3)
-    bgraph = Button(text="G",command=g.graph_screen,width=2)
+    bgraph = Button(text="G", command=g.graph_screen, width=2)
+    bq = Button(text="Q", command=quadratic, width=2)
     dm = Button(text="D", width=2, command=dark)
 
     buttons = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bπ, bp, bm, bx, bd, bu, bc, bcanc, bsin, bcos, btan, bvirg,
-               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, bgamma, berf, bgraph, dm]
+               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, bgamma, berf, bgraph, bq, dm]
     labels = [l, sign]
 
     '''
@@ -403,7 +409,7 @@ def main_screen():
     1 2 3 - sin sqrt log (10)  root      row3
     . 0 + =  C  ←    log (e)   mod       row4
     '''
-    l.grid(row=0, column=2, columnspan=4)
+    l.grid(row=0, column=3, columnspan=3)
     sign.grid(row=0, column=6 )
     b7.grid(row=1, column=0)
     b8.grid(row=1, column=1)
@@ -440,6 +446,7 @@ def main_screen():
     # blgamma.grid(row=1,column=7)
     berf.grid(row=1,column=7)
     bgraph.grid(row=0, column=1)
+    bq.grid(row=0, column=2)
     dm.grid(row=0, column=0)
 
     main_screen.mainloop()
