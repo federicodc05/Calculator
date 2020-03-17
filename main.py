@@ -2,6 +2,8 @@ import math
 from tkinter import *
 from __dependencies__ import classes as cl
 from __dependencies__ import __func__ as f
+from __dependencies__ import graph as g
+
 
 operazione = 0  # check operazioni
 a = 0  # valore a schermo
@@ -23,7 +25,7 @@ def binn():
     buttons.append(l)
     buttons.append(sign)
     binary.binscreen(buttons)
-    
+
 
 # darkmode switch
 def bdarkswitch(booby):
@@ -43,7 +45,7 @@ def ldarkswitch(looly):
 
 def dark():
     global darkmode
-    global buttons, labels, main_screen
+    global buttons, labels, main_screen, dm
     from __dependencies__ import binary
     darkmode = not darkmode
     print(darkmode)
@@ -56,8 +58,10 @@ def dark():
         ldarkswitch(lab)
     if darkmode:
         main_screen.configure(bg="grey14")
+        dm.configure(text="W")
     else:
         main_screen.configure(bg="SystemButtonFace")
+        dm.configure(text="D")
 
 
 # uguale
@@ -263,13 +267,6 @@ def gamma():
     print(a)
 
 
-def l_gamma():
-    global a, l, n
-    a = cl.func(a).l_gamma
-    n = -3
-    l.configure(text=a)
-
-
 def erf():
     global a, l, n
     a = f.gamma(a, l, n)
@@ -347,7 +344,7 @@ def cπ():
 
 def main_screen():
     global main_screen
-    global l, sign, buttons, labels, bsin, bcos, btan
+    global l, sign, buttons, labels, bsin, bcos, btan, dm
 
     main_screen = Tk()
     main_screen.resizable(0, 0)
@@ -391,10 +388,11 @@ def main_screen():
     bgamma = Button(text="Γ", command=gamma, width=3)
     # blgamma = Button(text="Ln(Γ)", command=l_gamma, width=3)
     berf = Button(text="erf", command= erf, width=3)
+    bgraph = Button(text="G",command=g.graph_screen,width=2)
     dm = Button(text="D", width=2, command=dark)
 
     buttons = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bπ, bp, bm, bx, bd, bu, bc, bcanc, bsin, bcos, btan, bvirg,
-               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, bgamma, berf, dm]
+               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, bgamma, berf, bgraph, dm]
     labels = [l, sign]
 
     '''
@@ -405,7 +403,7 @@ def main_screen():
     1 2 3 - sin sqrt log (10)  root      row3
     . 0 + =  C  ←    log (e)   mod       row4
     '''
-    l.grid(row=0, column=1, columnspan=5)
+    l.grid(row=0, column=2, columnspan=4)
     sign.grid(row=0, column=6 )
     b7.grid(row=1, column=0)
     b8.grid(row=1, column=1)
@@ -441,6 +439,7 @@ def main_screen():
     bgamma.grid(row=2, column=7)
     # blgamma.grid(row=1,column=7)
     berf.grid(row=1,column=7)
+    bgraph.grid(row=0, column=1)
     dm.grid(row=0, column=0)
 
     main_screen.mainloop()
