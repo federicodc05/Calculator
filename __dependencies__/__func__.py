@@ -51,7 +51,10 @@ def erf(a, z, n):
 
 
 def gamma(a, z, n):
-    e = round(math.gamma(a), 2)
+    try:
+        e = round(math.gamma(a), 2)
+    except OverflowError:
+        e = math.nan
     z.configure(text=e)
     n = -3
     return e
