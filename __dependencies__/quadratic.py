@@ -19,10 +19,10 @@ def output():
     c = ec.get()
     try:
         x = quadratic_calculator(float(a), float(b), float(c))
+        out.configure(text="x ≈ " + str(x[0]) + " \nx ≈ " + str(x[1]))
     except:
         x = m.nan
-
-    out.configure(text="x ≈ "+str(x[0])+" \nx ≈ "+str(x[1]))
+        out.configure(text="Invalid Parameters")
 
 
 def quadratic_screen(dark):
