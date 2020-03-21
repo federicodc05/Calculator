@@ -4,6 +4,7 @@ from __dependencies__ import classes as cl
 from __dependencies__ import __func__ as f
 from __dependencies__ import graph as g
 from __dependencies__ import quadratic as q
+from __dependencies__ import __calculus__ as c
 
 
 operazione = 0  # check operazioni
@@ -274,7 +275,7 @@ def gamma():
 
 def erf():
     global a, l, n
-    a = f.gamma(a, l, n)
+    a = f.erf(a, l, n)
     print(a)
 
 
@@ -392,13 +393,14 @@ def main_screen():
     br = Button(text="n-√", command=rt, width=3)
     bgamma = Button(text="Γ", command=gamma, width=3)
     # blgamma = Button(text="Ln(Γ)", command=l_gamma, width=3)
-    berf = Button(text="erf", command= erf, width=3)
+    berf = Button(text="erf", command=erf, width=3)
     bgraph = Button(text="G", command=g.graph_screen, width=2)
     bq = Button(text="Q", command=quadratic, width=2)
+    b_calculus = Button(text="Calculus", command=c.calculus, width=6, height=7)
     dm = Button(text="D", width=2, command=dark)
 
     buttons = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bπ, bp, bm, bx, bd, bu, bc, bcanc, bsin, bcos, btan, bvirg,
-               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, bgamma, berf, bgraph, bq, dm]
+               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, bgamma, berf, bgraph, bq, b_calculus, dm]
     labels = [l, sign]
 
     '''
@@ -444,9 +446,10 @@ def main_screen():
     br.grid(row=3, column=7)
     bgamma.grid(row=2, column=7)
     # blgamma.grid(row=1,column=7)
-    berf.grid(row=1,column=7)
+    berf.grid(row=1, column=7)
     bgraph.grid(row=0, column=1)
     bq.grid(row=0, column=2)
+    b_calculus.grid(row=0, column=8, rowspan=5)
     dm.grid(row=0, column=0)
 
     main_screen.mainloop()
