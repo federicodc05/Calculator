@@ -7,6 +7,14 @@ Report any issue you find (Salvo sto guardando a te)
 <h1>Beta has arrived! </h1>
 This Update is dedicated to Binary numbers! They're still a little buggy, but usable 
 
+<h2> Update Beta 1.3 </h2>
+*Bug fixes relative to quadratic calculator <br>
+*Added calculus stuff: <br>
+<tt>derivatives of a function </tt><br>
+<tt>indefinite integral of a function </tt><br>
+<tt>definite integral from <i>a</i> to <i>b</i> of a function</tt><br>
+<tt>limit of a function</tt>
+
 <h2>Work in Progress/Planned:</h2>
 *Hyperbolic Functions (Unlikely to be added due to appoximation and restricted domain) <br>
 
