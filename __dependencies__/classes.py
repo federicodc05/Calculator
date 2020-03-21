@@ -22,7 +22,6 @@ class calc:
             self.rt = round(x ** (1/y), 2)
 
 
-
 class trig:
     def __init__(self, x, i):
         if not i:
