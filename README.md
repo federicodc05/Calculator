@@ -7,6 +7,11 @@ Report any issue you find (Salvo sto guardando a te)
 <h1>Beta has arrived! </h1>
 This Update is dedicated to Binary numbers! They're still a little buggy, but usable 
 
+<h2> Update Beta 1.3.1 </h2>
+*Added factoring and expanding polynomials <br>
+*Added Pythagorean Triple Generator (PTG) <br>
+*Bug fixes
+
 <h2> Update Beta 1.3 </h2>
 *Bug fixes relative to quadratic calculator <br>
 *Added calculus stuff: <br>
