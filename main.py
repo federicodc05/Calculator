@@ -5,6 +5,7 @@ from __dependencies__ import __func__ as f
 from __dependencies__ import graph as g
 from __dependencies__ import quadratic as q
 from __dependencies__ import __calculus__ as c
+from __dependencies__ import pythagora_triples as pt
 
 
 operazione = 0  # check operazioni
@@ -72,7 +73,7 @@ def dark():
 
 # uguale
 def uguale():
-    global a, b, operazione, risultato, l, sign, d, n
+    global a, b, operazione, risultato, l, sign, d, n, neg
     risultato = a
     res = cl.calc(b, a)
     if operazione == 1:
@@ -101,6 +102,11 @@ def uguale():
             sign.configure(text="")
     a = risultato
     b = 0
+
+    if risultato < 0:
+        neg = True
+    else:
+        neg = False
 
 
 # exponential
@@ -175,29 +181,32 @@ def tan():
 
 #operazioni artitmetiche
 def add():
-    global a, b, operazione, d, sign
+    global a, b, operazione, d, sign, neg
     d = False
     operazione = 1
     b = a
     a = 0
     print("+")
     sign.configure(text="+")
+    neg = False
 def sub():
-    global a, b, operazione, d
+    global a, b, operazione, d, neg
     d = False
     operazione = 2
     b = a
     a = 0
     print("-")
     sign.configure(text="-")
+    neg = False
 def mul():
-    global a, b, operazione, d
+    global a, b, operazione, d, neg
     d = False
     operazione = 3
     b = a
     a = 0
     print("x")
     sign.configure(text="x")
+    neg = False
 def div():
     global a, b, operazione, d
     d = False
@@ -206,30 +215,34 @@ def div():
     a = 0
     print(":")
     sign.configure(text=":")
+    neg = False
 def modulo():
-    global a, b, operazione, d
+    global a, b, operazione, d, neg
     d = False
     operazione = 6
     b = a
     a = 0
     print("mod")
     sign.configure(text="|-")
+    neg = False
 def pow():
-    global a, b, operazione, d
+    global a, b, operazione, d, neg
     d = False
     operazione = 5
     b = a
     a = 0
     print("^")
     sign.configure(text="^")
+    neg = False
 def rt():
-    global a,b, operazione, d
+    global a,b, operazione, d, neg
     d = False
     operazione = 7
     b = a
     a = 0
     print("rt")
     sign.configure(text="√")
+    neg = False
 
 
 # ← e C
@@ -359,6 +372,7 @@ def main_screen():
     l = Label(text="0")
     sign = Label()
 
+
     # i pulsanti
     b0 = Button(text="0", command=c0, width=2)
     b1 = Button(text="1", command=c1, width=2)
@@ -396,11 +410,12 @@ def main_screen():
     berf = Button(text="erf", command=erf, width=3)
     bgraph = Button(text="G", command=g.graph_screen, width=2)
     bq = Button(text="Q", command=quadratic, width=2)
-    b_calculus = Button(text="Calculus", command=c.calculus, width=6, height=7)
+    b_calculus = Button(text="Calculus", command=c.calculus, width=6, height=4)
+    b_pyhtagora = Button(text="PTG", command=pt.pythagora, width=6, height=3)
     dm = Button(text="D", width=2, command=dark)
 
     buttons = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bπ, bp, bm, bx, bd, bu, bc, bcanc, bsin, bcos, btan, bvirg,
-               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, bgamma, berf, bgraph, bq, b_calculus, dm]
+               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, bgamma, berf, bgraph, bq, b_calculus, b_pyhtagora, dm]
     labels = [l, sign]
 
     '''
@@ -449,7 +464,8 @@ def main_screen():
     berf.grid(row=1, column=7)
     bgraph.grid(row=0, column=1)
     bq.grid(row=0, column=2)
-    b_calculus.grid(row=0, column=8, rowspan=5)
+    b_calculus.grid(row=0, column=8, rowspan=3)
+    b_pyhtagora.grid(row=3, column=8, rowspan=2)
     dm.grid(row=0, column=0)
 
     main_screen.mainloop()
