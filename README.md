@@ -7,8 +7,35 @@ Report any issue you find (Salvo sto guardando a te)
 <h1>Beta has arrived! </h1>
 This Update is dedicated to Binary numbers! They're still a little buggy, but usable 
 
+<h2> Update Beta 1.3.1 </h2>
+*Added factoring and expanding polynomials <br>
+*Added Pythagorean Triple Generator (PTG) <br>
+*Bug fixes
+
+<h2> Update Beta 1.3 </h2>
+*Bug fixes relative to quadratic calculator <br>
+*Added calculus stuff: <br>
+<tt>derivatives of a function </tt><br>
+<tt>indefinite integral of a function </tt><br>
+<tt>definite integral from <i>a</i> to <i>b</i> of a function</tt><br>
+<tt>limit of a function</tt>
+
 <h2>Work in Progress/Planned:</h2>
 *Hyperbolic Functions (Unlikely to be added due to appoximation and restricted domain) <br>
+
+<h2> Update Beta 1.2.1 </h2>
+*Added Quadratic Equation Calculator. (ax^2 + bx + c = 0)
+
+<h2> Update Beta 1.2 </h2>
+*Added graphing capabilities for the following functions: <br>
+<tt>cos(x)</tt><br>
+<tt>sin(x)</tt><br>
+<tt>tan(x)</tt><br>
+<tt>cos(x)</tt><br>
+<tt>e^x</tt><br>
+<tt>x^k</tt><br>
+<tt>sqrt(x)</tt><br>
+<tt>plolynomials & more</tt><br>
 
 <h2> Update Beta 1.1 </h2>
 *Fixed switching between base-10 and base-2 <br>

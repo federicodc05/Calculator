@@ -3,6 +3,7 @@ from tkinter import *
 a = '0b'
 b = '0b'
 
+
 def base10():
     global binbuttons, b10b
 
@@ -13,24 +14,27 @@ def base10():
 
 
 class calc:
-    def __init__(self,x,y):
+    def __init__(self, x, y):
         self.AND = bin(x & y)
         self.OR = bin(x | y)
-        self.XOR = bin(x^y)
+        self.XOR = bin(x ^ y)
 
 
 def uguale():
     global l
     global a
     global b
-    res = calc(int(b,2),int(a,2))
-    if operazione == 1:
-        a = res.AND
-    if operazione == 2:
-        a = res.OR
+    if b != '0b':
+        if a != '0b':
+            res = calc(int(b, 2), int(a, 2))
+            if operazione == 1:
+                a = res.AND
+            if operazione == 2:
+                a = res.OR
     bl.configure(text=a)
     print(a)
     b = 0
+
 
 def AND():
     global a, b, operazione
@@ -117,4 +121,4 @@ def binscreen(base10buttons):
     binnot.grid(row=2,column=1)
     binu.grid(row=2,column=2)
     binback.grid(row=2,column=3)
-    bin10.grid(row=1,column=4,rowspan=2)
+    bin10.grid(row=1,column=4,rowspan=2,)
