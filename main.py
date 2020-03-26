@@ -2,6 +2,11 @@ import math
 from tkinter import *
 from __dependencies__ import classes as cl
 from __dependencies__ import __func__ as f
+from __dependencies__ import graph as g
+from __dependencies__ import quadratic as q
+from __dependencies__ import __calculus__ as c
+from __dependencies__ import pythagora_triples as pt
+
 
 operazione = 0  # check operazioni
 a = 0  # valore a schermo
@@ -23,7 +28,7 @@ def binn():
     buttons.append(l)
     buttons.append(sign)
     binary.binscreen(buttons)
-    
+
 
 # darkmode switch
 def bdarkswitch(booby):
@@ -32,6 +37,10 @@ def bdarkswitch(booby):
         booby.configure(bg="grey19", fg="white")
     else:
         booby.configure(bg="SystemButtonFace", fg="black")
+
+
+def quadratic():
+    q.quadratic_screen(darkmode)
 
 
 def ldarkswitch(looly):
@@ -43,7 +52,7 @@ def ldarkswitch(looly):
 
 def dark():
     global darkmode
-    global buttons, labels, main_screen
+    global buttons, labels, main_screen, dm
     from __dependencies__ import binary
     darkmode = not darkmode
     print(darkmode)
@@ -56,13 +65,15 @@ def dark():
         ldarkswitch(lab)
     if darkmode:
         main_screen.configure(bg="grey14")
+        dm.configure(text="W")
     else:
         main_screen.configure(bg="SystemButtonFace")
+        dm.configure(text="D")
 
 
 # uguale
 def uguale():
-    global a, b, operazione, risultato, l, sign, d, n
+    global a, b, operazione, risultato, l, sign, d, n, neg
     risultato = a
     res = cl.calc(b, a)
     if operazione == 1:
@@ -91,6 +102,11 @@ def uguale():
             sign.configure(text="")
     a = risultato
     b = 0
+
+    if risultato < 0:
+        neg = True
+    else:
+        neg = False
 
 
 # exponential
@@ -165,29 +181,32 @@ def tan():
 
 #operazioni artitmetiche
 def add():
-    global a, b, operazione, d, sign
+    global a, b, operazione, d, sign, neg
     d = False
     operazione = 1
     b = a
     a = 0
     print("+")
     sign.configure(text="+")
+    neg = False
 def sub():
-    global a, b, operazione, d
+    global a, b, operazione, d, neg
     d = False
     operazione = 2
     b = a
     a = 0
     print("-")
     sign.configure(text="-")
+    neg = False
 def mul():
-    global a, b, operazione, d
+    global a, b, operazione, d, neg
     d = False
     operazione = 3
     b = a
     a = 0
     print("x")
     sign.configure(text="x")
+    neg = False
 def div():
     global a, b, operazione, d
     d = False
@@ -196,30 +215,34 @@ def div():
     a = 0
     print(":")
     sign.configure(text=":")
+    neg = False
 def modulo():
-    global a, b, operazione, d
+    global a, b, operazione, d, neg
     d = False
     operazione = 6
     b = a
     a = 0
     print("mod")
     sign.configure(text="|-")
+    neg = False
 def pow():
-    global a, b, operazione, d
+    global a, b, operazione, d, neg
     d = False
     operazione = 5
     b = a
     a = 0
     print("^")
     sign.configure(text="^")
+    neg = False
 def rt():
-    global a,b, operazione, d
+    global a,b, operazione, d, neg
     d = False
     operazione = 7
     b = a
     a = 0
     print("rt")
     sign.configure(text="√")
+    neg = False
 
 
 # ← e C
@@ -263,16 +286,9 @@ def gamma():
     print(a)
 
 
-def l_gamma():
-    global a, l, n
-    a = cl.func(a).l_gamma
-    n = -3
-    l.configure(text=a)
-
-
 def erf():
     global a, l, n
-    a = f.gamma(a, l, n)
+    a = f.erf(a, l, n)
     print(a)
 
 
@@ -347,7 +363,7 @@ def cπ():
 
 def main_screen():
     global main_screen
-    global l, sign, buttons, labels, bsin, bcos, btan
+    global l, sign, buttons, labels, bsin, bcos, btan, dm
 
     main_screen = Tk()
     main_screen.resizable(0, 0)
@@ -355,6 +371,7 @@ def main_screen():
 
     l = Label(text="0")
     sign = Label()
+
 
     # i pulsanti
     b0 = Button(text="0", command=c0, width=2)
@@ -390,11 +407,15 @@ def main_screen():
     br = Button(text="n-√", command=rt, width=3)
     bgamma = Button(text="Γ", command=gamma, width=3)
     # blgamma = Button(text="Ln(Γ)", command=l_gamma, width=3)
-    berf = Button(text="erf", command= erf, width=3)
+    berf = Button(text="erf", command=erf, width=3)
+    bgraph = Button(text="G", command=g.graph_screen, width=2)
+    bq = Button(text="Q", command=quadratic, width=2)
+    b_calculus = Button(text="Calculus", command=c.calculus, width=6, height=4)
+    b_pyhtagora = Button(text="PTG", command=pt.pythagora, width=6, height=3)
     dm = Button(text="D", width=2, command=dark)
 
     buttons = [b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, bπ, bp, bm, bx, bd, bu, bc, bcanc, bsin, bcos, btan, bvirg,
-               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, bgamma, berf, dm]
+               bsqrt, binv, bpow, blog, bnlog, bexp, dbin, bmod, br, bgamma, berf, bgraph, bq, b_calculus, b_pyhtagora, dm]
     labels = [l, sign]
 
     '''
@@ -405,7 +426,7 @@ def main_screen():
     1 2 3 - sin sqrt log (10)  root      row3
     . 0 + =  C  ←    log (e)   mod       row4
     '''
-    l.grid(row=0, column=1, columnspan=5)
+    l.grid(row=0, column=3, columnspan=3)
     sign.grid(row=0, column=6 )
     b7.grid(row=1, column=0)
     b8.grid(row=1, column=1)
@@ -440,7 +461,11 @@ def main_screen():
     br.grid(row=3, column=7)
     bgamma.grid(row=2, column=7)
     # blgamma.grid(row=1,column=7)
-    berf.grid(row=1,column=7)
+    berf.grid(row=1, column=7)
+    bgraph.grid(row=0, column=1)
+    bq.grid(row=0, column=2)
+    b_calculus.grid(row=0, column=8, rowspan=3)
+    b_pyhtagora.grid(row=3, column=8, rowspan=2)
     dm.grid(row=0, column=0)
 
     main_screen.mainloop()
