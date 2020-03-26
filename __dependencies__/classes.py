@@ -6,20 +6,23 @@ class calc:
         self.sum = x + y
         self.diff = x - y
         self.prod = round(x * y, 2)
+        # power
         if x == 0 and y == 0:
             self.power = math.nan
         else:
             self.power = x ** y
+        # division
         if x == 0 and y == 0:
             self.div = math.nan
         if x != 0 and y == 0:
             self.div = math.inf
         if x != 0 and y != 0:
             self.div = round(x / y, 2)
+        # root
         if y == 0:
             self.rt = math.inf
         if y != 0:
-            self.rt = round(x ** (1/y), 2)
+            self.rt = round(abs(x) ** (1/y), 2)
 
 
 class trig:
