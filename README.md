@@ -5,7 +5,10 @@ Anyway, this is just an Alpha version, so it might be lacking of features.
 Report any issue you find (Salvo sto guardando a te)
 
 <h1>Beta has arrived! </h1>
-This Update is dedicated to Binary numbers! They're still a little buggy, but usable 
+This Update is dedicated to Binary numbers and Calculus!
+
+<h2> Update Beta 1.3.2 </h2>
+*Fixed bug: <tt>Clicking multiple times operation buttons would cause wrog registration of numbers </tt>
 
 <h2> Update Beta 1.3.1 </h2>
 *Added factoring and expanding polynomials <br>
