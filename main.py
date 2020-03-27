@@ -184,7 +184,12 @@ def add():
     global a, b, operazione, d, sign, neg
     d = False
     operazione = 1
-    b = a
+    if b != 0 and a == 0:
+        check = True
+    else:
+        check = False
+    if not check:
+        b = a
     a = 0
     print("+")
     sign.configure(text="+")
@@ -193,7 +198,12 @@ def sub():
     global a, b, operazione, d, neg
     d = False
     operazione = 2
-    b = a
+    if b != 0 and a == 0:
+        check = True
+    else:
+        check = False
+    if not check:
+        b = a
     a = 0
     print("-")
     sign.configure(text="-")
@@ -202,7 +212,12 @@ def mul():
     global a, b, operazione, d, neg
     d = False
     operazione = 3
-    b = a
+    if b != 0 and a == 0:
+        check = True
+    else:
+        check = False
+    if not check:
+        b = a
     a = 0
     print("x")
     sign.configure(text="x")
@@ -211,7 +226,12 @@ def div():
     global a, b, operazione, d
     d = False
     operazione = 4
-    b = a
+    if b != 0 and a == 0:
+        check = True
+    else:
+        check = False
+    if not check:
+        b = a
     a = 0
     print(":")
     sign.configure(text=":")
@@ -220,7 +240,12 @@ def modulo():
     global a, b, operazione, d, neg
     d = False
     operazione = 6
-    b = a
+    if b != 0 and a == 0:
+        check = True
+    else:
+        check = False
+    if not check:
+        b = a
     a = 0
     print("mod")
     sign.configure(text="|-")
