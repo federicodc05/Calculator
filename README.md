@@ -7,6 +7,9 @@ Report any issue you find (Salvo sto guardando a te)
 <h1>Beta has arrived! </h1>
 This Update is dedicated to Binary numbers! They're still a little buggy, but usable 
 
+<h2> Update Beta 1.3.2 </h2>
+*Added Scrollbar to calculus function entry
+
 <h2> Update Beta 1.3.1 </h2>
 *Added factoring and expanding polynomials <br>
 *Added Pythagorean Triple Generator (PTG) <br>
